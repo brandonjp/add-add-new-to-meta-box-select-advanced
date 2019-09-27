@@ -7,7 +7,9 @@ jQuery(function() {
   let runScript = setTimeout(function() {
     let aanConfig = {
       useModal: true,
-      modalParams: '&TB_iframe=true&width=600&height=550',
+      modalParams: '&TB_iframe=true',
+      modalWidth: '600',
+      modalHeight: '550',
       baseUrl: '/app/wp-admin/post-new.php?post_type=',
       linkText: 'Add New',
       linkClass: 'button',
@@ -26,7 +28,8 @@ jQuery(function() {
         let linkStyle = aanConfig.linkStyle ? aanConfig.linkStyle : ' ';
         let classAttr = 'class="' + (aanConfig.useModal ? ' thickbox ' : ' ') + aanConfig.linkClass + '"';
         let targetAttr = !aanConfig.useModal ? 'target="_blank"' : ' ';
-        let addNewUrl = aanConfig.baseUrl + post_type + (aanConfig.useModal ? aanConfig.modalParams : '');
+        let modalParams = aanConfig.modalParams + '&width=' + aanConfig.modalWidth + '&height=' + aanConfig.modalHeight;
+        let addNewUrl = aanConfig.baseUrl + post_type + (aanConfig.useModal ? modalParams : '');
         let aHrefElem = jQuery(`<a href="${addNewUrl}" ${targetAttr} ${classAttr} style="${linkStyle}">${linkText}</a>`);
         jQuery(this).after(aHrefElem);
       }

@@ -8,6 +8,11 @@ Author: Brandon Pfeiffer
 Author URI: http://brandonjp.com
 
 Text Domain: add-add-new-to-meta-box-select-advanced
+
+With help from: 
+  * https://www.exratione.com/2018/02/the-easiest-javascript-modal-for-administrative-pages-in-wordpress-4/
+  * https://codex.wordpress.org/Javascript_Reference/ThickBox
+  * http://rizqy.me/create-modal-box-on-wordpress-dashboard/
 */
 
 
