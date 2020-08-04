@@ -25,11 +25,25 @@
             // only continue if the field is select2 and has options
             if (options) {
                 // console.warn(options);
-                // should be 'taxonomy_advanced' or 'post'
-                let type = options['ajax_data']['field']['type'];
-                let query_args = options['ajax_data']['field']['query_args'];
-                // should be the post/tax type name: foreman, project-manager, contact, customer, etc
-                let post_type = (type === 'post') ? query_args['post_type'] : query_args['taxonomy'][0];
+                let type = $thisSelect.data('type');
+                let post_type = $thisSelect.data('post_type');
+                // should be 'taxonomy' or 'taxonomy_advanced' or 'post'
+                if (!type) {
+                  if (options['ajax_data']) {
+                    // when ajax => true on metabox field settings...
+                    type = options['ajax_data']['field']['type'];
+                  } else {                  
+                    // when ajax => false on metabox field settings...
+                    type = $thisSelect.hasClass('rwmb-taxonomy') ? 'taxonomy' : 'post';
+                  }
+                }
+                if (!post_type) {
+                  if (options['ajax_data']) {
+                    let query_args = options['ajax_data']['field']['query_args'];
+                    // should be the post/tax type name: foreman, project-manager, contact, customer, etc
+                    post_type = (type === 'post') ? query_args['post_type'] : query_args['taxonomy'][0];
+                  }
+                }
                 // console.warn(useModal, options, type, query_args, post_type);
                 let linkText = aanConfig.linkText ? aanConfig.linkText : 'Add New';
                 let linkStyle = aanConfig.linkStyle ? aanConfig.linkStyle : ' ';
