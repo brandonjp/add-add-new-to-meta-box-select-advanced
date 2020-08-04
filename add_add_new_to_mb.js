@@ -66,6 +66,7 @@
                                 jQuery(window).unbind('tb_unload', showSelect2onClose);
                                 tb_unload_count = tb_unload_count + 1;
                                 $thisBtn.attr('href').replace(window.__CardinalTempNewTagName, '0');
+                                $thisSelect.attr('disabled',false).prop('disabled',false);
                                 $thisSelect.trigger('focus');
                                 $thisSelect.select2('open');
                                 window.__CardinalTempNewTagName = '';
@@ -75,11 +76,13 @@
                     } else {
                         e.preventDefault();
                         window.__CardinalTempDoNormalClick = true;
+                        $thisSelect.attr('disabled',true).prop('disabled',true);
                         let zroTagNameParam = aanConfig.tagNameParam + '0';
                         let newTagNameParam = aanConfig.tagNameParam + (window.__CardinalTempNewTagName.length ? window.__CardinalTempNewTagName : '0');
                         let newHref = $thisBtn.attr('href').replace(zroTagNameParam, newTagNameParam);
                         // let zroHref = $thisBtn.attr('href').replace(newTagNameParam, zroTagNameParam);
                         $thisBtn.attr('href', newHref).trigger('click');
+                        window.doubleTBcheck = setInterval(removeDoubleTB_title,100);
                     }
                     // let dataHref = jQuery(this).data('href');
                 });
@@ -95,5 +98,14 @@
             let tagName = jQuery(this).val();
             window.__CardinalTempNewTagName = tagName || '';
         });
+        function removeDoubleTB_title() {
+            // if there's a double iframe header/close bar, remove it
+            let $TB_title = jQuery('div#TB_title');
+            if ($TB_title.length > 1) {
+                $TB_title.first().addClass('first');
+                $TB_title.not('.first').remove();
+            } 
+            if ($TB_title.length === 1) clearInterval(window.doubleTBcheck);
+        }
     });
 })(jQuery);
