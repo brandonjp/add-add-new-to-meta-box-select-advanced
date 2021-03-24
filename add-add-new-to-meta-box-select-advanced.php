@@ -1,9 +1,9 @@
 <?php
 /*
 Plugin Name: Add 'Add New' to Meta Box Select Advanced Fields
-Plugin URI: http://brandonjp.com
+Plugin URI: https://github.com/brandonjp/add-add-new-to-meta-box-select-advanced
 Description: Add 'Add New' to Meta Box Select Advanced Fields
-Version: 0.1.67
+Version: 0.1.68
 Author: Brandon Pfeiffer
 Author URI: http://brandonjp.com
 
@@ -21,7 +21,7 @@ function add_add_new_to_mb($screen)
     add_thickbox();
     $slug = 'add_add_new_to_mb';
     $js_file = plugin_dir_url(__FILE__).$slug.'.js';
-    wp_enqueue_script($slug.'_js',$js_file, array(), '0.1.67');
+    wp_enqueue_script($slug.'_js',$js_file, array(), '0.1.68');
   }
 }
 
